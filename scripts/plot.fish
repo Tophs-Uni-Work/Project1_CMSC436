@@ -3,7 +3,7 @@
 # Create plots directory
 mkdir -p plots plots/normalized
 
-# Plot original data - all groups
+# Plot original data - all groups with diagonal divider (top-left to bottom-right)
 gnuplot -e "
 set terminal png size 800,600;
 set output 'plots/original_data.png';
@@ -14,10 +14,11 @@ set key outside;
 set datafile separator ',';
 plot 'Data/groupA.txt' using 1:2:3 with points pt 7 ps 0.5 lc variable title 'Group A', \
      'Data/groupB.txt' using 1:2:3 with points pt 9 ps 0.5 lc variable title 'Group B', \
-     'Data/groupC.txt' using 1:2:3 with points pt 11 ps 0.5 lc variable title 'Group C';
+     'Data/groupC.txt' using 1:2:3 with points pt 11 ps 0.5 lc variable title 'Group C', \
+     -2.22*x + 107643 with lines lw 2 lc rgb 'red' title 'Linear Separator';
 "
 
-# Individual original group plots
+# Individual original group plots with diagonal divider (top-left to bottom-right)
 for group in A B C
     gnuplot -e "
     set terminal png size 600,600;
@@ -26,13 +27,14 @@ for group in A B C
     set xlabel 'X';
     set ylabel 'Y';
     set datafile separator ',';
-    plot 'Data/group$group.txt' using 1:2:3 with points pt 7 ps 0.8 lc variable notitle;
+    plot 'Data/group$group.txt' using 1:2:3 with points pt 7 ps 0.8 lc variable title 'Group $group', \
+         -2.22*x + 107643 with lines lw 2 lc rgb 'red' title 'Linear Separator';
     "
 end
 
 # Check if normalized data exists
 if test -d Data/normalized
-    # Plot normalized data - all groups
+    # Plot normalized data - all groups with y = -x + 1
     gnuplot -e "
     set terminal png size 800,600;
     set output 'plots/normalized/normalized_data.png';
@@ -43,10 +45,11 @@ if test -d Data/normalized
     set datafile separator ',';
     plot 'Data/normalized/groupA.txt' using 1:2:3 with points pt 7 ps 0.5 lc variable title 'Group A', \
          'Data/normalized/groupB.txt' using 1:2:3 with points pt 9 ps 0.5 lc variable title 'Group B', \
-         'Data/normalized/groupC.txt' using 1:2:3 with points pt 11 ps 0.5 lc variable title 'Group C';
+         'Data/normalized/groupC.txt' using 1:2:3 with points pt 11 ps 0.5 lc variable title 'Group C', \
+         -x + 1 with lines lw 2 lc rgb 'red' title 'Linear Separator: y = -x + 1';
     "
 
-    # Individual normalized group plots
+    # Individual normalized group plots with y = -x + 1
     for group in A B C
         gnuplot -e "
         set terminal png size 600,600;
@@ -55,7 +58,8 @@ if test -d Data/normalized
         set xlabel 'X (normalized)';
         set ylabel 'Y (normalized)';
         set datafile separator ',';
-        plot 'Data/normalized/group$group.txt' using 1:2:3 with points pt 7 ps 0.8 lc variable notitle;
+        plot 'Data/normalized/group$group.txt' using 1:2:3 with points pt 7 ps 0.8 lc variable title 'Group $group', \
+             -x + 1 with lines lw 2 lc rgb 'red' title 'Linear Separator: y = -x + 1';
         "
     end
 end
