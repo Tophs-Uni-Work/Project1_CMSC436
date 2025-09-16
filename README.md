@@ -54,3 +54,22 @@ flake.nix                                       # Nix development environment
 - **Original data**: `y > -2.22*x + 107643` → Big Car (1), else Small Car (0)
 - **Normalized data**: `y > -x + 1` → Big Car (1), else Small Car (0)
 - **True Positive**: Correctly identified big cars (class 1)
+
+## Results
+
+### Data Visualization
+![Original Data](plots/original_data.png)
+*All groups with diagonal separator*
+
+![Normalized Data](plots/normalized/normalized_data.png)
+*Normalized data with linear classifier*
+
+### Individual Groups
+| Group A | Group B | Group C |
+|---------|---------|---------|
+| ![Group A](plots/normalized/groupA.png) | ![Group B](plots/normalized/groupB.png) | ![Group C](plots/normalized/groupC.png) |
+
+### Confusion Matrices
+| Group A | Group B | Group C |
+|---------|---------|---------|
+| ![Confusion A](plots/normalized/confusion/groupA.png) | ![Confusion B](plots/normalized/confusion/groupB.png) | ![Confusion C](plots/normalized/confusion/groupC.png) |
