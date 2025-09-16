@@ -1,0 +1,55 @@
+Confusion Matrix Analysis - Normalized Data Only
+===============================================
+
+=== Group A (Normalized) Results ===
+Total data points: 4000
+
+Confusion Matrix:
+                 Predicted
+               Big  Small
+Actual   Big   2000     0
+        Small    0   2000
+
+Metrics:
+Accuracy:  1.0000
+Precision: 1.0000
+Recall:    1.0000
+F1-Score:  1.0000
+
+=== Group B (Normalized) Results ===
+Total data points: 4000
+
+Confusion Matrix:
+                 Predicted
+               Big  Small
+Actual   Big   1982    18
+        Small   32   1968
+
+Metrics:
+Accuracy:  0.9875
+Precision: 0.9841
+Recall:    0.9910
+F1-Score:  0.9875
+
+=== Group C (Normalized) Results ===
+Total data points: 4000
+
+Confusion Matrix:
+                 Predicted
+               Big  Small
+Actual   Big   1401   599
+        Small  528   1472
+
+Metrics:
+Accuracy:  0.7183
+Precision: 0.7263
+Recall:    0.7005
+F1-Score:  0.7132
+
+=== Classification Rules ===
+Original data: y > -x + 70000 → Big Car (1), y ≤ -x + 70000 → Small Car (0)
+Normalized data: y > -x + 1 → Big Car (1), y ≤ -x + 1 → Small Car (0)
+Classes: 0 = Small Car, 1 = Big Car
+True Positive (TP): Correctly identified big cars (class 1)
+Data files for plotting generated in plots/normalized/confusion/
+Analysis results saved to: plots/normalized/confusion/analysis_results.txt
